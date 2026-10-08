@@ -7,3 +7,7 @@ logs/*
 !logs/.gitkeep
 data/*
 !data/.gitkeep
+06.10.2026/logs/*
+!06.10.2026/logs/.gitkeep
+06.10.2026/data/*
+!06.10.2026/data/.gitkeep
