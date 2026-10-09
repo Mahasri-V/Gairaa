@@ -1,0 +1,16 @@
+
+name: Acceptance Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  acceptance:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check workflow
+        run: echo "Acceptance workflow executed successfully"
