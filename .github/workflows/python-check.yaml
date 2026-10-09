@@ -1,0 +1,59 @@
+
+name: Python Syntax Check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.py'
+      - '.github/workflows/python-check.yaml'
+
+  pull_request:
+    branches: [main]
+    paths:
+      - '**.py'
+      - '.github/workflows/python-check.yaml'
+
+  workflow_dispatch:
+
+jobs:
+  syntax-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check Python syntax
+        run: |
+          python - <<'PY'
+          import ast
+          from pathlib import Path
+
+          files = list(Path(".").rglob("*.py"))
+          files = [
+              f for f in files
+              if ".git" not in f.parts
+              and ".venv" not in f.parts
+              and "venv" not in f.parts
+          ]
+
+          if not files:
+              print("No Python files found.")
+              raise SystemExit(0)
+
+          for file in files:
+              try:
+                  ast.parse(file.read_text(encoding="utf-8-sig"))
+                  print(f"PASS: {file}")
+              except (SyntaxError, UnicodeError) as error:
+                  print(f"FAIL: {file}: {error}")
+                  raise SystemExit(1)
+
+          print(f"Successfully checked {len(files)} Python files.")
+          PY
