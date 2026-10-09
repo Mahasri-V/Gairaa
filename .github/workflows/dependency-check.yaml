@@ -1,0 +1,39 @@
+
+name: Python Dependency Check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'requirements.txt'
+      - '.github/workflows/dependency-check.yaml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'requirements.txt'
+      - '.github/workflows/dependency-check.yaml'
+  workflow_dispatch:
+
+jobs:
+  dependency-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            echo "requirements.txt not found"
+            exit 1
+          fi
+          
