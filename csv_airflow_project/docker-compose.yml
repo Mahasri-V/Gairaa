@@ -1,0 +1,78 @@
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: csv_airflow_postgres
+
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+
+    ports:
+      - "5435:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airflow -d airflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+  airflow:
+    image: apache/airflow:3.1.0
+    container_name: csv_airflow
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    ports:
+      - "8083:8080"
+
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./data:/opt/airflow/data
+
+    environment:
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+
+    command: standalone
+
+
+  backend:
+    image: python:3.12-slim
+    container_name: csv_upload_backend
+
+    working_dir: /app
+
+    volumes:
+      - ./backend:/app
+      - ./data:/opt/airflow/data
+
+    ports:
+      - "8000:8000"
+
+    command: >
+      sh -c "pip install --no-cache-dir fastapi uvicorn python-multipart &&
+      uvicorn main:app --host 0.0.0.0 --port 8000"
+
+
+  frontend:
+    build: ./frontend
+    container_name: csv_upload_frontend
+
+    ports:
+      - "5173:5173"
+
+    depends_on:
+      - backend
+
+
+volumes:
+  postgres_data:

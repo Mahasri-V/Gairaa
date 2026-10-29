@@ -1,0 +1,7 @@
+order_id,product,category,price,quantity,region,total_amount
+1001,Laptop,Electronics,50000.0,2,Chennai,100000.0
+1002,Mobile,Electronics,20000.0,3,Coimbatore,60000.0
+1003,Chair,Furniture,4000.0,4,Salem,16000.0
+1004,Desk,Furniture,8000.0,2,Chennai,16000.0
+1005,Headphones,Electronics,3000.0,5,Tiruppur,15000.0
+1006,Notebook,Stationery,100.0,20,Erode,2000.0

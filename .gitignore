@@ -11,3 +11,7 @@ data/*
 !06.10.2026/logs/.gitkeep
 06.10.2026/data/*
 !06.10.2026/data/.gitkeep
+logs/
+**/logs/
+airflow_api_scd/
+*.zip.tmp

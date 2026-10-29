@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Pagination</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background: #333;
+            color: white;
+        }
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        button:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+        #pageInfo {
+            font-weight: bold;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Product List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Rating</th>
+                <th>Rating Count</th>
+            </tr>
+        </thead>
+        <tbody id="productTable">
+        </tbody>
+    </table>
+    <div class="pagination">
+        <button id="previousBtn" onclick="previousPage()">
+            ← Previous
+        </button>
+        <span id="pageInfo">Page 1</span>
+
+        <button id="nextBtn" onclick="nextPage()">
+            Next →
+        </button>
+    </div>
+    <script>
+        let currentPage = 1;
+        const limit = 5;
+        async function loadProducts() {
+            const response = await fetch(
+                `/products?page=${currentPage}&limit=${limit}`
+            );
+            const result = await response.json();
+            const table = document.getElementById("productTable");
+            table.innerHTML = "";
+            result.records.forEach(product => {
+                const row = `
+                    <tr>
+                        <td>${product.product_id}</td>
+                        <td>${product.title}</td>
+                        <td>${product.price}</td>
+                        <td>${product.category}</td>
+                        <td>${product.rating}</td>
+                        <td>${product.rating_count}</td>
+                    </tr>
+                `;
+                table.innerHTML += row;
+            });
+            document.getElementById("pageInfo").textContent =
+                `Page ${result.page}`;
+            document.getElementById("previousBtn").disabled =
+                currentPage === 1;
+            document.getElementById("nextBtn").disabled =
+                result.records.length < limit;
+        }
+        function nextPage() {
+            currentPage++;
+            loadProducts();
+        }
+        function previousPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                loadProducts();
+            }
+        }
+        loadProducts();
+    </script>
+</body>
+</html>

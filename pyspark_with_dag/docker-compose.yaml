@@ -1,0 +1,26 @@
+
+services:
+  airflow:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pyspark_airflow
+    command: standalone
+    restart: unless-stopped
+
+    ports:
+      - "8082:8080"
+
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./data:/opt/airflow/data
+      - ./output:/opt/airflow/output
+      - airflow_logs:/opt/airflow/logs
+
+volumes:
+  airflow_logs:

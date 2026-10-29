@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: sales_analytics
+      POSTGRES_USER: cube_user
+      POSTGRES_PASSWORD: cube_local_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cube_user -d sales_analytics"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  cube:
+    image: cubejs/cube:latest
+    ports:
+      - "4000:4000"
+    environment:
+      CUBEJS_DEV_MODE: "true"
+      CUBEJS_API_SECRET: local_dev_secret_change_me
+      CUBEJS_DB_TYPE: postgres
+      CUBEJS_DB_HOST: postgres
+      CUBEJS_DB_PORT: 5432
+      CUBEJS_DB_NAME: sales_analytics
+      CUBEJS_DB_USER: cube_user
+      CUBEJS_DB_PASS: cube_local_pass
+      CUBEJS_CACHE_AND_QUEUE_DRIVER: memory
+    volumes:
+      - .:/cube/conf
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
