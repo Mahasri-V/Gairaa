@@ -1,0 +1,102 @@
+[
+  {
+    "employee_id": 201,
+    "first_name": "Karthik",
+    "last_name": "R",
+    "email": "KARTHIK@GMAIL.COM",
+    "department": "IT",
+    "salary": "56000",
+    "city": "Chennai",
+    "joining_date": "2023-01-10"
+  },
+  {
+    "employee_id": 202,
+    "first_name": " Anitha ",
+    "last_name": "Devi",
+    "email": "anitha@gmail.com",
+    "department": "HR",
+    "salary": "45000",
+    "city": "Coimbatore",
+    "joining_date": "2023-04-15"
+  },
+  {
+    "employee_id": 203,
+    "first_name": "Sanjay",
+    "last_name": "Kumar",
+    "email": "sanjay@gmail.com",
+    "department": "Finance",
+    "salary": "invalid",
+    "city": "Salem",
+    "joining_date": "2024-02-20"
+  },
+  {
+    "employee_id": 204,
+    "first_name": "Deepa",
+    "last_name": "R",
+    "email": "",
+    "department": "IT",
+    "salary": "48000",
+    "city": "Chennai",
+    "joining_date": "2024-05-12"
+  },
+  {
+    "employee_id": 205,
+    "first_name": "Manoj",
+    "last_name": "K",
+    "email": "manoj@gmail.com",
+    "department": "it",
+    "salary": "60000",
+    "city": "Tiruppur",
+    "joining_date": "2022-10-05"
+  },
+  {
+    "employee_id": 206,
+    "first_name": "Priya",
+    "last_name": "S",
+    "email": "priya@gmail",
+    "department": "HR",
+    "salary": "-2000",
+    "city": "Erode",
+    "joining_date": "2023-13-40"
+  },
+  {
+    "employee_id": 207,
+    "first_name": "Ramesh",
+    "last_name": "B",
+    "email": "ramesh@gmail.com",
+    "department": "",
+    "salary": "35000",
+    "city": "Salem",
+    "joining_date": "2024-07-18"
+  },
+  {
+    "employee_id": 208,
+    "first_name": "Vijay",
+    "last_name": "Raj",
+    "email": "vijay@gmail.com",
+    "department": "Sales",
+    "salary": "52000",
+    "city": "Chennai",
+    "joining_date": "2024-09-10"
+  },
+  {
+    "employee_id": 209,
+    "first_name": "Vijay",
+    "last_name": "Raj",
+    "email": "vijay@gmail.com",
+    "department": "Sales",
+    "salary": "52000",
+    "city": "Chennai",
+    "joining_date": "2024-09-10"
+  },
+  {
+    "employee_id": 210,
+    "first_name": "Nithya",
+    "last_name": "M",
+    "email": "NITHYA@GMAIL.COM",
+    "department": "Finance",
+    "salary": "42000",
+    "city": "Coimbatore",
+    "joining_date": "2023-11-25"
+  }
+]

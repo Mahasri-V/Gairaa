@@ -1,0 +1,11 @@
+employee_id,first_name,last_name,email,department,salary,city,joining_date
+101," Arun ",Kumar," ARUN@GMAIL.COM ",IT,35000,Chennai,2024-01-15
+102,Bala,Krishnan,bala@gmail.com,HR,40000,Coimbatore,2023-06-10
+103,Ravi,Shankar,ravi@gmail.com,Finance,abc,Salem,2024-03-20
+104,Priya,Devi,PRIYA@GMAIL.COM,HR,42000,Chennai,2023-08-15
+105,Suresh,Kumar,suresh@gmail.com,it,50000,Coimbatore,2022-05-20
+106,Divya,R,,Finance,32000,Salem,2024-11-10
+107,Kumar,Raj,kumar@gmail.com,IT,-5000,Tiruppur,2025-02-12
+108,Naveen,Kumar,naveen@gmail,Sales,38000,Tiruppur,2025-04-18
+108,Naveen,Kumar,naveen@gmail,Sales,38000,Tiruppur,2025-04-18
+109," Meena ",Ravi,meena@gmail.com,,45000,Erode,2024-12-01
